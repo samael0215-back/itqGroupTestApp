@@ -1,0 +1,81 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="a.damaneuski">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE appUser (
+                                  id BIGSERIAL PRIMARY KEY,
+                                  username VARCHAR(255) UNIQUE NOT NULL,
+                                  email VARCHAR(255) UNIQUE NOT NULL,
+                                  position VARCHAR(255) NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="a.damaneuski">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="document"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE document (
+                                      id BIGSERIAL PRIMARY KEY,
+                                      unique_number UUID UNIQUE NOT NULL,
+                                      author_id BIGINT NOT NULL,
+                                      title VARCHAR(255) NOT NULL,
+                                      status VARCHAR(255),
+                                      created_date TIMESTAMP NOT NULL,
+                                      updated_date TIMESTAMP NOT NULL,
+                                      FOREIGN KEY (author_id) REFERENCES appUser(id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="a.damaneuski">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="history"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE history (
+                                     id BIGSERIAL PRIMARY KEY,
+                                     document_unique_number UUID NOT NULL,
+                                     action VARCHAR(255),
+                                     initiator_id BIGINT NOT NULL,
+                                     action_date TIMESTAMP NOT NULL,
+                                     comment VARCHAR(255),
+                                     FOREIGN KEY (document_unique_number) REFERENCES document(unique_number),
+                                     FOREIGN KEY (initiator_id) REFERENCES appUser(id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="a.damaneuski">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="approval_record"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE approval_record (
+                                             id BIGSERIAL PRIMARY KEY,
+                                             document_unique_number_ar UUID NOT NULL,
+                                             author_id_ar BIGINT NOT NULL,
+                                             approval_date TIMESTAMP,
+                                             FOREIGN KEY (document_unique_number_ar) REFERENCES document(unique_number),
+                                             FOREIGN KEY (author_id_ar) REFERENCES appUser(id)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

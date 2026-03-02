@@ -1,0 +1,14 @@
+document:
+  count: 10
+
+spring:
+  liquibase:
+    enabled: false
+
+server:
+  port: 8082
+
+logging:
+  level:
+    root: INFO
+    itqGroupTestApp.auto: DEBUG

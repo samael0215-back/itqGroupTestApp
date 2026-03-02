@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: itqGroupTestApp
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  liquibase:
+    change-log: classpath:db/changelog/changelog.xml
+
+server:
+  port: 8081
+
+app:
+  batchSize: 3
+
+logging:
+  level:
+    root: INFO
+    itqGroupTestApp.core: DEBUG
