@@ -1,5 +1,5 @@
 document:
-  count: 10
+  count: 10000
 
 spring:
   liquibase:

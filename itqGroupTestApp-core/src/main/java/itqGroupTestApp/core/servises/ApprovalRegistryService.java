@@ -1,15 +1,13 @@
 package itqGroupTestApp.core.servises;
 
 
+import itqGroupTestApp.core.entity.*;
+import itqGroupTestApp.core.utilityClasses.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import itqGroupTestApp.core.entity.ActionResult;
-import itqGroupTestApp.core.entity.ApprovalRecord;
-import itqGroupTestApp.core.entity.Document;
-import itqGroupTestApp.core.entity.User;
 import itqGroupTestApp.core.ropositories.ApprovalRegistryRepository;
 
 import java.util.*;
@@ -33,9 +31,13 @@ public class ApprovalRegistryService {
 
     @Transactional
     public Map<Long, ActionResult> approveDocuments(List<Long> ids, User initiator) {
+        if (ids == null || ids.isEmpty()) {
+            throw new ServiceException(ErrorCode.VALIDATION_ERROR);
+        }
+        int totalDocuments = ids.size();
+        log.info("Starting approve documents for {} documents", totalDocuments);
         Map<Long, ActionResult> result = new HashMap<>();
         long overallStartTime = System.currentTimeMillis();
-        int totalDocuments = ids.size();
 
         for (int index = 0; index < totalDocuments; index++) {
             Long id = ids.get(index);
@@ -55,7 +57,6 @@ public class ApprovalRegistryService {
         record.setApprover(initiator);
         approvalRegistryRepository.save(record);
     }
-
 
     public Map<String, Object> executeConcurrentApprovals(Long documentId, int threads, int attempts) {
         Map<String, Object> summary = new HashMap<>();

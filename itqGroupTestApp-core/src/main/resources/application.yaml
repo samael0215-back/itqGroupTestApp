@@ -22,4 +22,4 @@ app:
 logging:
   level:
     root: INFO
-    itqGroupTestApp.core: DEBUG
+    itqGroupTestApp.core: error

@@ -4,10 +4,14 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
 @Data
+@Getter
+@Setter
 @Entity
 public class ApprovalRecord {
     @Id

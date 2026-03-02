@@ -99,9 +99,10 @@ public class DocumentService implements Serializable {
         if (ids == null || ids.isEmpty()) {
             throw new ServiceException(ErrorCode.VALIDATION_ERROR);
         }
+        int totalDocuments = ids.size();
+        log.info("Starting submit documents for {} documents", totalDocuments);
         Map<Long, ActionResult> result = new HashMap<>();
         long overallStartTime = System.currentTimeMillis();
-        int totalDocuments = ids.size();
 
         for (int index = 0; index < totalDocuments; index++) {
             Long id = ids.get(index);

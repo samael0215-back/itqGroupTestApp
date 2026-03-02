@@ -78,4 +78,10 @@
         </sql>
     </changeSet>
 
+    <changeSet id="5" author="a.damaneuski">
+
+        <sql>
+            INSERT INTO appUser (username, email, position) VALUES ('Верховный шаман', 'admin@rutovi4.com', 'admin');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

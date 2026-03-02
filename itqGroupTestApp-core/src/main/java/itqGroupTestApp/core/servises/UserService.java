@@ -1,6 +1,7 @@
 package itqGroupTestApp.core.servises;
 
 
+import itqGroupTestApp.core.entity.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class UserService implements Serializable {
     public User getUserById(Long authorId) {
         return userRepository.findById(authorId).orElseThrow(() -> {
             log.error("User not found for id: {}", authorId);
-            return new ServiceException("Пользователь не найден с id: " + authorId);
+            return new ServiceException(ErrorCode.INVALID_OPERATION);
         });
     }
 }

@@ -1,6 +1,5 @@
 package itqGroupTestApp.core.mapper;
 
-
 import org.mapstruct.Mapper;
 
 import itqGroupTestApp.core.DTO.HistoryDTO;
