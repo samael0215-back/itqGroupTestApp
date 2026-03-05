@@ -1,4 +1,4 @@
-package itqGroupTestApp.auto.create.docs;
+package itqGroupTestApp.core.auto.create.docs;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

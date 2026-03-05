@@ -1,4 +1,4 @@
-package itqGroupTestApp.auto.create.docs;
+package itqGroupTestApp.core.auto.create.docs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

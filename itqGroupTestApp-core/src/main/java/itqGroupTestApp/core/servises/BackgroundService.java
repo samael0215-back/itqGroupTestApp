@@ -29,7 +29,7 @@ public class BackgroundService {
     @Async("submitExecutor")
     public void startSubmitWorker() {
         log.info("Starting SUBMIT-worker");
-        User initiator = userService.getUserById(1L);       //сделать какого нибудь юзер бота и хардкодить тут его... или через гет дергать
+        User initiator = userService.getUserById(1L);
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 List<Long> batchIds = getIdsList(Status.DRAFT, batchSize);

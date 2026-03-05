@@ -27,7 +27,7 @@ public class HistoryService {
         return historyRepository.findAllByDocument_Id(id);
     }
 
-    protected void createHistory(Document document, User user, Action action) {
+    public void createHistory(Document document, User user, Action action) {
         History history = new History();
         history.setDocument(document);
         history.setAction(action);
