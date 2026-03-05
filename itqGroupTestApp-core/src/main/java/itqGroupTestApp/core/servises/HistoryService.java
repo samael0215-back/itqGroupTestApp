@@ -32,6 +32,6 @@ public class HistoryService {
         history.setDocument(document);
         history.setAction(action);
         history.setInitiator(user);
-        historyRepository.save(history);;
+        historyRepository.save(history);
     }
 }

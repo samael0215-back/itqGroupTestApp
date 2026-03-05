@@ -4,18 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import itqGroupTestApp.core.DTO.DocumentDTO;
 import itqGroupTestApp.core.entity.*;
 import itqGroupTestApp.core.mapper.DocumentMapper;
-import itqGroupTestApp.core.ropositories.ApprovalRegistryRepository;
 import itqGroupTestApp.core.ropositories.DocumentRepository;
-import itqGroupTestApp.core.servises.ApprovalRegistryService;
 import itqGroupTestApp.core.servises.DocumentService;
 import itqGroupTestApp.core.servises.HistoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
 
@@ -32,12 +28,6 @@ class DocumentServiceTest {
 
     @Mock
     private DocumentMapper documentMapper;
-
-    @Mock
-    private ApprovalRegistryService approvalRegistryService;
-
-    @Mock
-    private ApprovalRegistryRepository approvalRegistryRepository;
 
     private User author;
     private DocumentDTO documentDTO;
